@@ -13,7 +13,7 @@ export const fetchProductsFailure = (error) => {
 export const fetchProducts = () => async (dispatch) => {
   dispatch(handleLoading());
   try {
-    const data = await fetch('http:///fakestoreapi.com/products?limit=10');
+    const data = await fetch('http:///faketoreapi.com/products?limit=10');
     const products = await data.json();
     dispatch(fetchProductsSuccess(products));
   } catch (error) {

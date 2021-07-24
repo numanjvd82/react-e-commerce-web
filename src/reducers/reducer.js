@@ -1,8 +1,12 @@
+import { createStandaloneToast } from '@chakra-ui/react';
+
 const initialState = {
   loading: false,
   products: [],
   error: null,
 };
+
+const toast = createStandaloneToast();
 
 export const reducer = (state = initialState, action) => {
   if (action.type === 'INCREMENT_NUMBER') {
@@ -30,7 +34,14 @@ export const reducer = (state = initialState, action) => {
   if (action.type === 'FETCH_PRODUCTS_FAILURE') {
     return {
       ...state,
-      error: action.payload,
+      error: toast({
+        title: 'An error occurred.',
+        description: `${action.payload}`,
+        status: 'error',
+        duration: 9000,
+        isClosable: true,
+        position: 'top',
+      }),
       loading: false,
     };
   }
