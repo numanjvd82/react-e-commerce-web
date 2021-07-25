@@ -4,6 +4,7 @@ const initialState = {
   loading: false,
   products: [],
   error: null,
+  singleProduct: [],
 };
 
 const toast = createStandaloneToast();
@@ -42,6 +43,14 @@ export const reducer = (state = initialState, action) => {
         isClosable: true,
         position: 'top',
       }),
+      loading: false,
+    };
+  }
+
+  if (action.type === 'FETCH_SINGLE_PRODUCT_SUCCESS') {
+    return {
+      ...state,
+      singleProduct: action.payload,
       loading: false,
     };
   }
