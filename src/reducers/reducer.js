@@ -36,7 +36,7 @@ export const reducer = (state = initialState, action) => {
       ...state,
       error: toast({
         title: 'An error occurred.',
-        description: `${action.payload}`,
+        description: `Something Went Wrong :(`,
         status: 'error',
         duration: 9000,
         isClosable: true,

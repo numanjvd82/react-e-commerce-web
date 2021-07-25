@@ -1,4 +1,4 @@
-import { Badge, Box, Flex, IconButton, Text } from '@chakra-ui/react';
+import { Badge, Box, Flex, HStack, IconButton, Text } from '@chakra-ui/react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -18,18 +18,25 @@ const Header = () => {
           </Text>
         </Link>
         <IconButton
+          size="lg"
+          mr="5"
           isRound="true"
           aria-label="Click to Open Cart"
           icon={<FaShoppingCart />}
         />
         <Badge
-          fontSize="0.8rem"
+          w="20px"
+          h="20px"
+          borderRadius="50%"
+          fontSize="1rem"
           bgColor="blue.300"
-          right="3"
+          right="7"
           top="9"
           position="absolute"
         >
-          1
+          <HStack justify="center" align="center">
+            <Text>1</Text>
+          </HStack>
         </Badge>
       </Flex>
     </Box>
