@@ -1,8 +1,11 @@
 import { Badge, Box, Flex, HStack, IconButton, Text } from '@chakra-ui/react';
 import { FaShoppingCart } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 const Header = () => {
+  const { cartCounter } = useSelector((state) => state);
+
   return (
     <Box py="3" backgroundColor="blackAlpha.800">
       <Flex mx="3" align="center" justify="space-between">
@@ -35,7 +38,7 @@ const Header = () => {
           position="absolute"
         >
           <HStack justify="center" align="center">
-            <Text>1</Text>
+            <Text>{cartCounter}</Text>
           </HStack>
         </Badge>
       </Flex>

@@ -10,6 +10,10 @@ export const fetchProductsFailure = (error, dispatchType) => {
   return { type: dispatchType, payload: error };
 };
 
+export const changeCartCounter = (id) => {
+  return { type: 'ADD_PRODUCT_TO_CART', id };
+};
+
 export const fetchProducts = (url) => async (dispatch) => {
   dispatch(handleLoading('HANDLE_LOADING'));
   try {

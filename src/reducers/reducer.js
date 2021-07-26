@@ -4,7 +4,9 @@ const initialState = {
   loading: false,
   products: [],
   error: null,
-  singleProduct: [],
+  singleProduct: {},
+  cartCounter: 0,
+  cartProducts: [],
 };
 
 const toast = createStandaloneToast();
@@ -55,5 +57,29 @@ export const reducer = (state = initialState, action) => {
     };
   }
 
+  if (action.type === 'ADD_PRODUCT_TO_CART') {
+    const tempCart = state.products.filter((product) => {
+      return product.id === action.id;
+    });
+    return {
+      ...state,
+      cartProducts: tempCart,
+      cartCounter: state.cartCounter + 1,
+    };
+  }
+
   return state;
 };
+
+// return {
+//   ...state,
+//   cartCounter: state.cartCounter + 1,
+//   error: toast({
+//     title: 'Success',
+//     description: `Item added to the cart successfully.`,
+//     status: 'success',
+//     duration: 9000,
+//     isClosable: true,
+//     position: 'top',
+//   }),
+// };

@@ -1,11 +1,11 @@
 import {
+  Badge,
   Box,
   Button,
   Center,
   Flex,
   Heading,
   Image,
-  Text,
   Wrap,
   WrapItem,
 } from '@chakra-ui/react';
@@ -31,7 +31,7 @@ const Home = () => {
   }
 
   return (
-    <Box my="2" overflow="hidden">
+    <Box bgColor="gray.200" py="2" overflow="hidden">
       <Wrap justify="center">
         {products.map(({ id, title, image, price, description }) => {
           return (
@@ -51,6 +51,11 @@ const Home = () => {
                 pb="3"
               >
                 <Image
+                  _hover={{
+                    transform: 'Scale(1.07)',
+                    overflow: 'hidden',
+                    transition: 'transform 0.5s ease',
+                  }}
                   backgroundPosition="top"
                   w="350px"
                   h="250px"
@@ -60,13 +65,25 @@ const Home = () => {
                 />
 
                 <Box>
-                  <Flex justify="space-between">
-                    <Heading mx="3" fontSize="1rem" as="p">
+                  <Flex mt="2" align="center" justify="space-between">
+                    <Badge
+                      borderRadius="7px"
+                      colorScheme="teal"
+                      mx="3"
+                      fontSize="1rem"
+                      as="p"
+                    >
                       {title.substring(0, 20)}
-                    </Heading>
-                    <Text fontWeight="medium" mx="3">
+                    </Badge>
+                    <Badge
+                      borderRadius="7px"
+                      colorScheme="gray"
+                      fontSize="1rem"
+                      fontWeight="medium"
+                      mx="3"
+                    >
                       {`$ ${price}`}
-                    </Text>
+                    </Badge>
                   </Flex>
                   <Heading
                     fontWeight="medium"
