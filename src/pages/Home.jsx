@@ -8,32 +8,24 @@ import {
   Image,
   Wrap,
   WrapItem,
-} from '@chakra-ui/react';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { fetchProducts } from '../actions/actions';
-import Loading from '../components/Loading';
+} from "@chakra-ui/react";
+import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const Home = () => {
-  const { loading, error, products } = useSelector((state) => state);
+  const { isLoading, error, data } = useQuery("products", () =>
+    fetch("http:///fakestoreapi.com/products").then((res) => res.json())
+  );
 
-  console.log(loading, error, products);
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProducts('http:///fakestoreapi.com/products'));
-  }, [dispatch]);
-
-  if (loading) {
+  if (isLoading) {
     return <Loading />;
   }
 
   return (
     <Box bgColor="gray.200" py="2" overflow="hidden">
       <Wrap justify="center">
-        {products.map(({ id, title, image, price, description }) => {
+        {data.map(({ id, title, image, price, description }) => {
           return (
             <WrapItem key={id}>
               <Box
@@ -52,9 +44,9 @@ const Home = () => {
               >
                 <Image
                   _hover={{
-                    transform: 'Scale(1.07)',
-                    overflow: 'hidden',
-                    transition: 'transform 0.5s ease',
+                    transform: "Scale(1.07)",
+                    overflow: "hidden",
+                    transition: "transform 0.5s ease",
                   }}
                   backgroundPosition="top"
                   w="350px"
@@ -98,8 +90,8 @@ const Home = () => {
                     <Center>
                       <Button
                         _hover={{
-                          bgColor: 'gray.400',
-                          transform: 'translateY(-5px)',
+                          bgColor: "gray.400",
+                          transform: "translateY(-5px)",
                         }}
                         my="4"
                         size="sm"

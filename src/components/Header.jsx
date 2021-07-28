@@ -1,10 +1,10 @@
-import { Badge, Box, Flex, HStack, IconButton, Text } from '@chakra-ui/react';
-import { FaShoppingCart } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Badge, Box, Flex, HStack, IconButton, Text } from "@chakra-ui/react";
+import { FaShoppingCart } from "react-icons/fa";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-  const { cartCounter } = useSelector((state) => state);
+  const { cartProducts } = useSelector((state) => state);
 
   return (
     <Box py="3" backgroundColor="blackAlpha.800">
@@ -38,7 +38,7 @@ const Header = () => {
           position="absolute"
         >
           <HStack justify="center" align="center">
-            <Text>{cartCounter}</Text>
+            <Text>{cartProducts.length}</Text>
           </HStack>
         </Badge>
       </Flex>
