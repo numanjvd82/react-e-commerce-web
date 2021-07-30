@@ -10,10 +10,6 @@ import {
 import CartProductsContainer from './CartProductsContainer';
 
 const Cart = ({ onClose, onOpen, isOpen }) => {
-  //
-
-  //
-
   return (
     <>
       <Drawer
