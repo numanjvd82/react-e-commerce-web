@@ -1,10 +1,21 @@
-import { Badge, Box, Flex, HStack, IconButton, Text } from '@chakra-ui/react';
+import {
+  Badge,
+  Box,
+  Flex,
+  HStack,
+  IconButton,
+  Text,
+  useDisclosure,
+} from '@chakra-ui/react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Cart from './Cart';
 
 const Header = () => {
-  const { cartCounter } = useSelector((state) => state);
+  const { cartProducts } = useSelector((state) => state);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Box py="3" backgroundColor="blackAlpha.800">
@@ -20,7 +31,9 @@ const Header = () => {
             React-Commerce
           </Text>
         </Link>
+        {isOpen && <Cart onOpen={onOpen} onClose={onClose} isOpen={isOpen} />}
         <IconButton
+          onClick={onOpen}
           size="lg"
           mr="5"
           isRound="true"
@@ -38,7 +51,7 @@ const Header = () => {
           position="absolute"
         >
           <HStack justify="center" align="center">
-            <Text>{cartCounter}</Text>
+            <Text>{cartProducts.length}</Text>
           </HStack>
         </Badge>
       </Flex>
@@ -47,3 +60,5 @@ const Header = () => {
 };
 
 export default Header;
+
+// isOpen={isOpen} onOpen={onOpen} onClose={onClose}

@@ -27,14 +27,14 @@ const ProductDetails = () => {
 
   useEffect(() => {
     dispatch(fetchSingleProduct(`http:///fakestoreapi.com/products/${id}`));
-  }, [id, dispatch]);
+  }, [dispatch, id]);
 
   if (loading) {
     return <Loading />;
   }
 
-  const handleCart = () => {
-    dispatch(changeCartCounter(id));
+  const addProductToCart = (productID) => {
+    dispatch(changeCartCounter(productID));
   };
 
   const { id: productID, title, image, description, price } = singleProduct;
@@ -53,6 +53,7 @@ const ProductDetails = () => {
         <Box>
           <Flex align="center" justify="space-between">
             <Badge
+              whiteSpace="normal"
               borderRadius="10px"
               colorScheme="teal"
               mx="3"
@@ -76,7 +77,7 @@ const ProductDetails = () => {
           </Heading>
           <Center>
             <Button
-              onClick={() => handleCart()}
+              onClick={() => addProductToCart(productID)}
               _hover={{
                 bgColor: 'gray.400',
                 transform: 'translateY(-5px)',

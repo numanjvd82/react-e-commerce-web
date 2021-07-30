@@ -7,18 +7,12 @@ const initialState = {
   singleProduct: {},
   cartCounter: 0,
   cartProducts: [],
+  isCartVisible: false,
 };
 
 const toast = createStandaloneToast();
 
 export const reducer = (state = initialState, action) => {
-  if (action.type === 'INCREMENT_NUMBER') {
-    return {
-      ...state,
-      number: state.number + 1,
-    };
-  }
-
   if (action.type === 'HANDLE_LOADING') {
     return {
       ...state,
@@ -58,28 +52,23 @@ export const reducer = (state = initialState, action) => {
   }
 
   if (action.type === 'ADD_PRODUCT_TO_CART') {
-    const tempCart = state.products.filter((product) => {
-      return product.id === action.id;
+    const tempCart = state.products.filter(({ id }) => {
+      return id === action.id;
     });
     return {
       ...state,
       cartProducts: tempCart,
-      cartCounter: state.cartCounter + 1,
+      cartCounter: state.cartProducts.length,
+      error: toast({
+        title: 'Success',
+        description: `Item added to the cart successfully.`,
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
+        position: 'top',
+      }),
     };
   }
 
   return state;
 };
-
-// return {
-//   ...state,
-//   cartCounter: state.cartCounter + 1,
-//   error: toast({
-//     title: 'Success',
-//     description: `Item added to the cart successfully.`,
-//     status: 'success',
-//     duration: 9000,
-//     isClosable: true,
-//     position: 'top',
-//   }),
-// };

@@ -16,9 +16,9 @@ import { fetchProducts } from '../actions/actions';
 import Loading from '../components/Loading';
 
 const Home = () => {
-  const { loading, error, products } = useSelector((state) => state);
+  const { loading, products } = useSelector((state) => state);
 
-  console.log(loading, error, products);
+  console.log(products);
 
   const dispatch = useDispatch();
 
