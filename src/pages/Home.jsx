@@ -37,6 +37,7 @@ const Home = () => {
           return (
             <WrapItem key={id}>
               <Box
+                boxShadow="2xl"
                 mx="3rem"
                 bgColor="gray.700"
                 color="white"

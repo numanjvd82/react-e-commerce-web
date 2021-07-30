@@ -5,7 +5,6 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerOverlay,
-  Text,
 } from '@chakra-ui/react';
 import CartProductsContainer from './CartProductsContainer';
 
@@ -26,7 +25,6 @@ const Cart = ({ onClose, onOpen, isOpen }) => {
             <DrawerCloseButton />
           </DrawerHeader>
           <DrawerBody>
-            <Text>Hello World</Text>
             <CartProductsContainer />
           </DrawerBody>
         </DrawerContent>
