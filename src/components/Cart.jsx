@@ -12,9 +12,20 @@ import {
   Flex,
   Heading,
 } from '@chakra-ui/react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { totalCartCost } from '../actions/actions';
 import CartProductsContainer from './CartProductsContainer';
 
 const Cart = ({ onClose, onOpen, isOpen }) => {
+  const { cartProducts, cartTotal } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(totalCartCost());
+  }, [dispatch, cartProducts]);
+
   return (
     <>
       <Drawer
@@ -31,13 +42,20 @@ const Cart = ({ onClose, onOpen, isOpen }) => {
             <DrawerCloseButton />
           </DrawerHeader>
           <DrawerBody>
+            {cartProducts.length < 1 && (
+              <Heading my={4} as="h2">
+                No items in the Cart.
+              </Heading>
+            )}
             <CartProductsContainer />
 
-            <Box>
-              <Flex justify="center" align="flex-end">
-                <Heading as="h2">Total: $30.15</Heading>
-              </Flex>
-            </Box>
+            {cartProducts.length > 0 && (
+              <Box my={3}>
+                <Flex justify="center" align="flex-end">
+                  <Heading as="h2">Total: ${cartTotal.toFixed(2)}</Heading>
+                </Flex>
+              </Box>
+            )}
           </DrawerBody>
           <Divider />
           <DrawerFooter>
