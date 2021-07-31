@@ -7,19 +7,31 @@ const CartProducts = ({ text, product }) => {
     <>
       <Box borderBottom="2px solid grey" py={2} key={id}>
         <Flex justify="space-between" align="center">
-          <Image
-            _hover={{
-              transform: 'Scale(1.07)',
-              overflow: 'hidden',
-              transition: 'transform 0.5s ease',
-            }}
-            backgroundPosition="top"
-            w="70"
-            h="70"
-            objectFit="cover"
-            src={image}
-            alt={title}
-          />
+          <Flex direction="column" justify="center" align="center">
+            <Image
+              pb="3"
+              _hover={{
+                transform: 'Scale(1.07)',
+                overflow: 'hidden',
+                transition: 'transform 0.5s ease',
+              }}
+              backgroundPosition="top"
+              w="70"
+              h="70"
+              objectFit="cover"
+              src={image}
+              alt={title}
+            />
+            <Badge
+              borderRadius="7px"
+              colorScheme="gray"
+              fontSize="1rem"
+              fontWeight="medium"
+              mx="3"
+            >
+              {`$ ${price}`}
+            </Badge>
+          </Flex>
           <Box>
             <Flex direction="column" justify="center" align="center">
               <Badge
@@ -34,15 +46,6 @@ const CartProducts = ({ text, product }) => {
               <Text>{description.substring(0, 35)}....</Text>
             </Flex>
           </Box>
-          <Badge
-            borderRadius="7px"
-            colorScheme="gray"
-            fontSize="1rem"
-            fontWeight="medium"
-            mx="3"
-          >
-            {`$ ${price}`}
-          </Badge>
         </Flex>
       </Box>
     </>

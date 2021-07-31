@@ -5,7 +5,6 @@ const initialState = {
   products: [],
   error: null,
   singleProduct: {},
-  cartCounter: 0,
   cartProducts: [],
   isCartVisible: false,
 };
@@ -57,13 +56,12 @@ export const reducer = (state = initialState, action) => {
     });
     return {
       ...state,
-      cartProducts: tempCart,
-      cartCounter: state.cartProducts.length,
+      cartProducts: [...tempCart, ...state.cartProducts],
       error: toast({
         title: 'Success',
         description: `Item added to the cart successfully.`,
         status: 'success',
-        duration: 5000,
+        duration: 3000,
         isClosable: true,
         position: 'top',
       }),
