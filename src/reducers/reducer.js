@@ -54,6 +54,7 @@ export const reducer = (state = initialState, action) => {
     const tempCart = state.products.filter(({ id }) => {
       return id === action.id;
     });
+
     return {
       ...state,
       cartProducts: [...tempCart, ...state.cartProducts],
@@ -70,3 +71,18 @@ export const reducer = (state = initialState, action) => {
 
   return state;
 };
+
+// if (state.cartProducts.length === 0) {
+//   return {
+//     ...state,
+//     error: toast({
+//       title: 'Error',
+//       description: `Go back to the home page and refresh the page`,
+//       status: 'error',
+//       duration: 3000,
+//       isClosable: true,
+//       position: 'top',
+//       id: 'error-toast',
+//     }),
+//   };
+// }

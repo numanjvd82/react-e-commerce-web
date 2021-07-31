@@ -7,13 +7,7 @@ const CartProductsContainer = () => {
   return (
     <>
       {cartProducts.map((product) => {
-        return (
-          <CartProducts
-            key={product.id}
-            product={product}
-            text="hello world 2"
-          />
-        );
+        return <CartProducts key={product.id} product={product} />;
       })}
     </>
   );

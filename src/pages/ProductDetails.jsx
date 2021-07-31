@@ -17,11 +17,7 @@ import Loading from '../components/Loading';
 const ProductDetails = () => {
   const { id } = useParams();
 
-  const { loading, singleProduct, cartCounter, cartProducts } = useSelector(
-    (state) => state
-  );
-
-  console.log(cartCounter, cartProducts);
+  const { loading, singleProduct } = useSelector((state) => state);
 
   const dispatch = useDispatch();
 
