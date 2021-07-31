@@ -11,7 +11,7 @@ import {
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { changeCartCounter, fetchSingleProduct } from '../actions/actions';
+import { handleAddProductToCart, fetchSingleProduct } from '../actions/actions';
 import Loading from '../components/Loading';
 
 const ProductDetails = () => {
@@ -30,7 +30,7 @@ const ProductDetails = () => {
   }
 
   const addProductToCart = (productID) => {
-    dispatch(changeCartCounter(productID));
+    dispatch(handleAddProductToCart(productID));
   };
 
   const { id: productID, title, image, description, price } = singleProduct;

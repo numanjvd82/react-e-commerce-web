@@ -10,8 +10,12 @@ export const fetchProductsFailure = (error) => {
   return { type: 'FETCH_PRODUCTS_FAILURE', payload: error };
 };
 
-export const changeCartCounter = (id) => {
+export const handleAddProductToCart = (id) => {
   return { type: 'ADD_PRODUCT_TO_CART', id };
+};
+
+export const removeCartProduct = (id) => {
+  return { type: 'REMOVE_PRODUCT_FROM_CART', id };
 };
 
 export const fetchProducts = (url) => async (dispatch) => {

@@ -69,6 +69,24 @@ export const reducer = (state = initialState, action) => {
     };
   }
 
+  if (action.type === 'REMOVE_PRODUCT_FROM_CART') {
+    const tempCart = state.cartProducts.filter(({ id }) => {
+      return id !== action.id;
+    });
+    return {
+      ...state,
+      cartProducts: tempCart,
+      error: toast({
+        title: 'Success',
+        description: `Item deleted from the cart successfully.`,
+        status: 'info',
+        duration: 3000,
+        isClosable: true,
+        position: 'top',
+      }),
+    };
+  }
+
   return state;
 };
 

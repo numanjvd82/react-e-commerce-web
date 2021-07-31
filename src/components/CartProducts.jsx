@@ -1,8 +1,16 @@
 import { Badge, Box, Flex, IconButton, Image, Text } from '@chakra-ui/react';
 import { GrClose } from 'react-icons/gr';
+import { useDispatch } from 'react-redux';
+import { removeCartProduct } from '../actions/actions';
 
 const CartProducts = ({ product }) => {
   const { id, title, image, description, price } = product;
+
+  const dispatch = useDispatch();
+
+  const handleCartRemove = (id) => {
+    dispatch(removeCartProduct(id));
+  };
 
   return (
     <>
@@ -57,6 +65,7 @@ const CartProducts = ({ product }) => {
             </Flex>
           </Box>
           <IconButton
+            onClick={() => handleCartRemove(id)}
             my={2}
             size="md"
             mr="5"
