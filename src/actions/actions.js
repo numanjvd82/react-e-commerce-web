@@ -18,6 +18,10 @@ export const removeCartProduct = (id) => {
   return { type: 'REMOVE_PRODUCT_FROM_CART', id };
 };
 
+export const totalCartCost = () => {
+  return { type: 'TOTAL_CART_COST' };
+};
+
 export const fetchProducts = (url) => async (dispatch) => {
   dispatch(handleLoading());
   try {

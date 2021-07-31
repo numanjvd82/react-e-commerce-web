@@ -7,6 +7,7 @@ const initialState = {
   singleProduct: {},
   cartProducts: [],
   isCartVisible: false,
+  cartTotal: 0,
 };
 
 const toast = createStandaloneToast();
@@ -62,7 +63,7 @@ export const reducer = (state = initialState, action) => {
         title: 'Success',
         description: `Item added to the cart successfully.`,
         status: 'success',
-        duration: 3000,
+        duration: 1500,
         isClosable: true,
         position: 'top',
       }),
@@ -80,27 +81,20 @@ export const reducer = (state = initialState, action) => {
         title: 'Success',
         description: `Item deleted from the cart successfully.`,
         status: 'info',
-        duration: 3000,
+        duration: 1500,
         isClosable: true,
         position: 'top',
       }),
     };
   }
 
+  if (action.type === 'TOTAL_CART_COST') {
+    const tempCart = state.cartProducts.reduce((cartVal, item) => {
+      return cartVal + item.price;
+    }, 0);
+
+    return { ...state, cartTotal: tempCart };
+  }
+
   return state;
 };
-
-// if (state.cartProducts.length === 0) {
-//   return {
-//     ...state,
-//     error: toast({
-//       title: 'Error',
-//       description: `Go back to the home page and refresh the page`,
-//       status: 'error',
-//       duration: 3000,
-//       isClosable: true,
-//       position: 'top',
-//       id: 'error-toast',
-//     }),
-//   };
-// }

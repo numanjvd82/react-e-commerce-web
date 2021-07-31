@@ -18,8 +18,6 @@ import Loading from '../components/Loading';
 const Home = () => {
   const { loading, products } = useSelector((state) => state);
 
-  console.log(products);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
