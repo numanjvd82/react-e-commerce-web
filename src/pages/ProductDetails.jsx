@@ -22,7 +22,7 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchSingleProduct(`http:///fakestoreapi.com/products/${id}`));
+    dispatch(fetchSingleProduct(`https:///fakestoreapi.com/products/${id}`));
   }, [dispatch, id]);
 
   if (loading) {

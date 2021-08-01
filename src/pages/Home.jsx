@@ -21,7 +21,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts('http:///fakestoreapi.com/products'));
+    dispatch(fetchProducts('https:///fakestoreapi.com/products'));
   }, [dispatch]);
 
   if (loading) {
