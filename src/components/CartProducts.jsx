@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Badge, Box, Flex, IconButton, Image, Text } from '@chakra-ui/react';
 import { GrClose } from 'react-icons/gr';
 import { useDispatch } from 'react-redux';
@@ -8,6 +9,8 @@ const CartProducts = ({ product }) => {
 
   const dispatch = useDispatch();
 
+  const trunCatedTitle = (text, number) => text.substring(0, number);
+
   const handleCartRemove = (id) => {
     dispatch(removeCartProduct(id));
   };
@@ -15,11 +18,7 @@ const CartProducts = ({ product }) => {
   return (
     <>
       <Box borderBottom="2px solid grey" py={2} key={id}>
-        <Flex
-          direction={['column', 'row']}
-          justify="space-between"
-          align="center"
-        >
+        <Flex direction={['column', 'row']} justify="space-between" align="center">
           <Flex direction="column" justify="center" align="center">
             <Image
               py="2"
@@ -57,10 +56,10 @@ const CartProducts = ({ product }) => {
                 fontSize="1rem"
                 as="p"
               >
-                {title.substring(0, 20)}
+                {trunCatedTitle(title, 20)}
               </Badge>
               <Text pb={1} ml={1} mr={0}>
-                {description.substring(0, 35)}....
+                {trunCatedTitle(description, 35)}....
               </Text>
             </Flex>
           </Box>
@@ -77,6 +76,18 @@ const CartProducts = ({ product }) => {
       </Box>
     </>
   );
+};
+
+CartProducts.propTypes = {
+  product: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      description: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default CartProducts;

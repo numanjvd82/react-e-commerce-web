@@ -12,7 +12,7 @@ const initialState = {
 
 const toast = createStandaloneToast();
 
-export const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   if (action.type === 'HANDLE_LOADING') {
     return {
       ...state,
@@ -52,9 +52,7 @@ export const reducer = (state = initialState, action) => {
   }
 
   if (action.type === 'ADD_PRODUCT_TO_CART') {
-    const tempCart = state.products.filter(({ id }) => {
-      return id === action.id;
-    });
+    const tempCart = state.products.filter(({ id }) => id === action.id);
 
     return {
       ...state,
@@ -71,9 +69,7 @@ export const reducer = (state = initialState, action) => {
   }
 
   if (action.type === 'REMOVE_PRODUCT_FROM_CART') {
-    const tempCart = state.cartProducts.filter(({ id }) => {
-      return id !== action.id;
-    });
+    const tempCart = state.cartProducts.filter(({ id }) => id !== action.id);
     return {
       ...state,
       cartProducts: tempCart,
@@ -89,12 +85,12 @@ export const reducer = (state = initialState, action) => {
   }
 
   if (action.type === 'TOTAL_CART_COST') {
-    const tempCart = state.cartProducts.reduce((cartVal, item) => {
-      return cartVal + item.price;
-    }, 0);
+    const tempCart = state.cartProducts.reduce((cartVal, item) => cartVal + item.price, 0);
 
     return { ...state, cartTotal: tempCart };
   }
 
   return state;
 };
+
+export default reducer;

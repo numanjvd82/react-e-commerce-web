@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Box,
   Button,
@@ -28,13 +29,7 @@ const Cart = ({ onClose, onOpen, isOpen }) => {
 
   return (
     <>
-      <Drawer
-        placement="right"
-        size="md"
-        isOpen={isOpen}
-        onOpen={onOpen}
-        onClose={onClose}
-      >
+      <Drawer placement="right" size="md" isOpen={isOpen} onOpen={onOpen} onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">
@@ -67,6 +62,12 @@ const Cart = ({ onClose, onOpen, isOpen }) => {
       </Drawer>
     </>
   );
+};
+
+Cart.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+  onOpen: PropTypes.func.isRequired,
 };
 
 export default Cart;
